@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>DOM Projects</title>
+
+    <style>
+      body {
+        font-family: Arial;
+      }
+
+      .subButton {
+        font-size: 25px;
+        margin: 30px 0 30px 30px;
+        border: none;
+        padding: 15px 25px 15px 25px;
+        border-radius: 30px;
+        background-color: red;
+        color: white;
+        box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+        cursor: pointer;
+      }
+      .is-subscribed {
+        color: black;
+        background-color: lightgray;
+      }
+
+      .inputCost {
+        font-size: 20px;
+        padding: 10px 0 10px 15px;
+      }
+
+      .calculate-button {
+        border: none;
+        color: white;
+        background-color: green;
+        padding: 12px 15px;
+        margin: auto 0 auto 0;
+        font-size: 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <h3>YouTube Subscribe Button</h3>
+    <button class="js-subButton subButton" onclick="
+      subscribe();        
+      ">Subscribe
+    </button>
+
+    <hr>
+    
+    <h3>Amazon shipping Calculator</h3>
+    <p>Orders under 40$ = +10$ shipping</p>
+    <p>Orders over 40$ = FREE shipping</p>
+
+    <input class="inputCost" placeholder="Cost of order" onkeydown="
+      enterKeyDown(event)
+    ">
+
+    <button class="calculate-button" onclick="
+      
+      calculateShipping();
+      ">Calculate
+    </button>
+
+    <p class="js-shipping"></p>
+
+    <hr>
+
+    <h3>Rock paper Scissors</h3>>
+    <a href="RPSExercise.html" target="_blanck">Click here</a>
+
+    <hr>
+    <h3>Todo List</h3>>
+    <a href="ToDoListExercise.html" target="_blanck">Click here</a>
+
+
+    
+
+
+    <script>
+
+      /*Window es un objecte mes, es la root del que hem fet servir, pero JS HO AMAGA
+      window.document
+      window.console.log('fjia');
+      window.alert();
+      */
+
+      function subscribe() {
+        const butElement = document.querySelector('.js-subButton');
+        if(butElement.innerText === 'Subscribe') {
+          butElement.innerHTML = 'Subscribed';
+          butElement.classList.add('is-subscribed');
+        } else {
+          butElement.innerHTML = 'Subscribe';
+          butElement.classList.remove('is-subscribed');
+        }
+      }
+
+      function enterKeyDown(event) {
+        if(event.key === 'Enter') {
+          calculateShipping();
+        }
+      }
+
+      function calculateShipping() {
+        const costInput = document.querySelector('.inputCost');
+        let cost =  Number(costInput.value);
+        if (cost <= 40) {
+          cost += 10;
+        }
+
+        document.querySelector('.js-shipping').innerHTML = `$${cost}`;
+
+      }
+    </script>
+  </body>
+
+</html>
